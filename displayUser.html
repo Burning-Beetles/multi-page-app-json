@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+     <h1> SignedUp User</h1>
+
+     <script> 
+          let userInfo = localStorage.getItem('userInfo');
+          let userInfoObj = JSON.parse(userInfo);
+          console.log(userInfoObj); // {name: "John", email: "john@gmail", password: "1234"}
+
+          let {name, email, password} = userInfoObj;
+
+          let createdDiv =  document.createElement("div")
+            createdDiv.innerHTML = `<p> Name: ${name} </p> <p> Email: ${email} </p> <p> Password: ${password} </p>`;
+            createdDiv.className = "display-div";
+            document.body.append(createdDiv)
+          
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+      <form>
+        <input type="text" name="name" placeholder="name" id="name">
+        <input type="email" name="email" placeholder="Email" id="email">
+        <input type="password" name="password" placeholder="Password" id="password">
+        <input type="password" name="password" placeholder="Confirm Password" id="confirm-password">
+        <button type="submit">Sign Up</button>
+      </form>
+      <div class="output">
+          
+      </div>
+
+
+      <script>
+         let nameInput = document.querySelector('#name');
+         let emailInput = document.querySelector('#email');
+         let passwordInput = document.querySelector('#password');
+         let confirmPasswordInput = document.querySelector('#confirm-password');
+         let signUpButton = document.querySelector('button');
+
+         let output = document.querySelector('.output');
+
+
+         signUpButton.addEventListener("click", display)
+
+
+        //  let arr = [{}, {}, {}]
+         function display(eventDetails){
+            eventDetails.preventDefault();
+
+            let name = nameInput.value;
+            let email = emailInput.value;
+            let password = passwordInput.value;
+            let confirmPassword = confirmPasswordInput.value;
+            // conditions:
+            if(!name || !email || !password || !confirmPassword){
+                alert("Please fill all the fields")
+                return;
+            }
+            else if(password !=confirmPassword){
+                alert("Password and Confirm Password do not match")
+                return;
+            }
+
+            let userInfo = {
+                name: name,
+                email: email,
+                password: password
+            }
+            // convert the object to a JSon:
+            let userInfoJson = JSON.stringify(userInfo);
+            // store the userInfoJson in the local storage:
+             
+            localStorage.setItem("userInfo",userInfoJson)
+
+
+            
+            // lets create an element dynamically:
+            let createdDiv =  document.createElement("div")
+            createdDiv.innerHTML = `<p> Name: ${name} </p> <p> Email: ${email} </p> <p> Password: ${password} </p>`;
+            createdDiv.className = "display-div";
+            // createdDiv.id = "created-div";
+            output.append(createdDiv)
+            // output.prepend(createdDiv)
+
+            // clear the input fields:
+            nameInput.value = "";
+            emailInput.value = "";
+            passwordInput.value = "";
+            confirmPasswordInput.value = "";
+
+            // display the submit button:
+            // signUpButton.disabled = true;
+         } 
+
+      </script>
+
+</body>
+</html>
